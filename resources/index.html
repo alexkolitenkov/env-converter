@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Env Converter</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css"
+    integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="./styles.css">
+</head>
+
+<body>
+  <header>
+    <h1>Env Converter</h1>
+  </header>
+  <main>
+    <div class="container">
+      <section class="json-input">
+        <div class="buttonsAndLabelBlock">
+          <div class="inputLabel">
+            <label for="input">Input:</label>
+          </div>
+          <div class="inputButtons">
+            <button class="inputButton tooltip copyToClipboardJsonInput">
+              <i class="fa-regular fa-copy"></i>
+              <span class="tooltiptext spanCopyToClipboardJsonInput">Copy to clipboard</span>
+            </button>
+            <button class="inputButton tooltip saveToFile">
+              <i class="fa-regular fa-floppy-disk"></i>
+              <span class="tooltiptext">Save to a File</span>
+            </button>
+            <button class="inputButton tooltip openFile">
+              <i class="fa-regular fa-folder"></i>
+              <span class="tooltiptext">Open a File</span>
+            </button>
+            <button class="inputButton tooltip clearInput">
+              <i class="fa-regular fa-trash-can"></i>
+              <span class="tooltiptext">Clear</span>
+            </button>
+          </div>
+        </div>
+
+        <div id="jsonEditor"></div>
+        <button class="prettyPrint">Pretty Print</button>
+      </section>
+
+      <section id="dropdownMenus">
+        <div class="dropdown-menu">
+          <label for="prefixes">Choose a prefix:</label>
+          <select id="prefixes"></select>
+        </div>
+
+        <div class="dropdown-menu">
+          <label for="services">Choose a service:</label>
+          <select id="services"></select>
+        </div>
+
+        <div class="convertButton">
+          <button class="convert tooltip">
+            <i class="fa-solid fa-arrow-right-long" style="color: #ffffff;"></i>
+            <span class="tooltiptext">Convert</span>
+          </button>
+        </div>
+      </section>
+
+      <section id="env-output">
+        <div class="buttonsAndLabelBlock">
+          <div class="outputLabel">
+            <label for="output">Output:</label>
+          </div>
+          <div class="outputButtons">
+            <button class="outputButton tooltip copyToClipboardEnvOutput">
+              <i class="fa-regular fa-copy"></i>
+              <span class="tooltiptext spanCopyToClipboardEnvOutput">Copy to clipboard</span>
+            </button>
+            <button class="outputButton tooltip saveToFile">
+              <i class="fa-regular fa-floppy-disk"></i>
+              <span class="tooltiptext">Save to a File</span>
+            </button>
+            <button class="inputButton tooltip clearOutput">
+              <i class="fa-regular fa-trash-can"></i>
+              <span class="tooltiptext">Clear</span>
+            </button>
+
+          </div>
+        </div>
+
+        <textarea id="output" rows="15" cols="30" readonly></textarea>
+      </section>
+    </div>
+  </main>
+ 
+  <script src="https://unpkg.com/monaco-editor/min/vs/loader.js"></script>
+  <script src="./js/neutralino.js"></script>
+  <script src="./js/main.mjs" type="module"></script>
+  <script src="./js/editor.mjs" type="module"></script>
+
+</body>
+
+</html>
