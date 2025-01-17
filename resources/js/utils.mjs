@@ -12,12 +12,17 @@ function camelToSnakeCase(str) {
 export function build(obj, key, prefix = '', service = '') {
   let exportString = '';
 
+  const formattedKey = `${prefix ? prefix + '_' : ''}${service ? service + '_' : ''}${camelToSnakeCase(key)}`;
+
   if (typeof obj[key] === 'number' || typeof obj[key] === 'boolean') {
-    exportString +=
-      `${prefix ? prefix + '_' : ''}${service ? service + '_' : ''}${camelToSnakeCase(key)}=${obj[key]}\n`;
+    exportString += `${formattedKey}=${obj[key]}\n`;
   } else if (typeof obj[key] === 'string') {
-    exportString +=
-      `${prefix ? prefix + '_' : ''}${service ? service + '_' : ''}${camelToSnakeCase(key)}='${obj[key]}'\n`;
+    const value = obj[key];
+    if (/\s/.test(value)) {
+      exportString += `${formattedKey}='${value}'\n`;
+    } else {
+      exportString += `${formattedKey}=${value}\n`;
+    }
   } else if (typeof obj[key] === 'object') {
     for (const k in obj[key]) {
       exportString += build(obj[key], k, `${prefix ? prefix + '_' : ''}${service ? service + '_' : ''}${key.toUpperCase()}`);
